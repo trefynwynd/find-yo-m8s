@@ -3,10 +3,17 @@ h1 {
     text-align: center;
     font-weight: bold;
 }
-/* The "Begin" button is up as a nav bar */
 
-/* At some point, I would like the how-to-play blurb to be a container. */
-    /* Make the blurb be under the ID of blurb */
+.blurb {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+    font-size: 18px;
+}
+
+.setup {
+    justify-content: space-evenly;
+    }
+
 
     /* The arena is a flex container */
 .board {
@@ -17,6 +24,7 @@ h1 {
     margin-left: 20px;
     max-width: 595px; */
 }
+
 
 footer {
     position: absolute;
