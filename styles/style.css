@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 h1 {
     font-family: fantasy;
     text-align: center;
@@ -11,7 +15,9 @@ h1 {
 }
 
 .setup {
-    justify-content: space-evenly;
+    display: flex;
+    align-content: center;
+    justify-content: space-around;
     }
 
 
