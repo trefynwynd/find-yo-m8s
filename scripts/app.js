@@ -8,9 +8,9 @@ A checklist of things to do:
 [X] The Begin Button
 [X] The startGame function that the Begin Button executes
 [X] DRY method for Arena creation
-[X] Shuffle function
-[] Add cards to board
-[] flipping cards
+[X] Shuffle function (branch: I found another even shorter function!)
+[] Add cards to board (branch: My fancy DRY method stayed mostly the same)
+[] flipping cards (branch: Had to add more objects to my cards for it to work)
 [] comparing flipped cards
 [X] Win/Lose components
 
@@ -20,48 +20,49 @@ A checklist of things to do:
 // The cards
 const cardFront = 
     [{
-        name: 'kate',
-        img: 'images/cF0.jpg'
+        value: 'kate',
+        name: 'cF0',
+        img: './images/cF0.jpg'
     },
-    // {   name: 'kate',
-    //     img: 'images/cF4.jpg'
-    // }, 
     {
-        name: 'nate',
-        img: 'images/cF1.jpg',
+        value: 'nate',
+        name: 'cF1',
+        img: './images/cF1.jpg'
+    }, 
+    {
+        value: 'bait',
+        name: 'cF2', 
+        img: './images/cF2.jpg'
     },
-    // {
-    //     name: 'nate',
-    //     img: 'images/cF5.jpg'
-    // }, 
     {
-        name: 'bait',
-        img: 'images/cF2.jpg'
+        value: 'tate',
+        name: 'cF3',
+        img: './images/cF3.jpg'
+    }, 
+    {
+        value: 'kate',
+        name: 'cF4',
+        img: './images/cF4.jpg'
     },
-    // {
-    //     name: 'bait',
-    //     img: 'images/cF6.jpg'
-    // }, 
     {
-        name: 'tate',
-        img: 'images/cF3.jpg'
-    }
-    // ,
-    // {
-    //     name: 'tate',
-    //     img: 'images/cF7.jpg'
-    // }
-]
+        value: 'nate',
+        name: 'cF5',
+        img: './images/cF5.jpg'
+    }, 
+    {
+        value: 'bait',
+        name: 'cF6',
+        img: './images/cF6.jpg'
+    },
+    {
+        value: 'tate',
+        name: 'cF7',
+        img: './images/cF7.jpg'
+    }]
 
-const cardFront2 = [...cardFront]
-const allFront = cardFront.concat(cardFront2)
-const fullDeck = []
+let cardSplay = [] // Where the values are pushed for comparision
+let cardPaired = 0 // A tally of matched pairs
 
-// When the cardFront are flipped, the cardFront are splayed out to checked whether they match
-const cardSplay = []
-
-// When the cardFront are flipped and they match
-const cardPaired = []
 
 // This is the board
 let board = document.createElement('main')
