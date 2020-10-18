@@ -84,68 +84,44 @@ function shuffleDeck(array) {
     })
 }
 
-// function to create the 2x4 arena; I think I should have this already done upon on launch since I was planning for it to be hidden until the "Begin" button is pressed
+// function to create the 2x4 arena
 function displayBoard() {
-    for (let i = 0; i < fullDeck.length; i++) {
+    for (let i = 0; i < cardFront.length; i++) {
         let pares = document.createElement('img');
         pares.setAttribute('src', '/images/cB.png');
-        pares.setAttribute('value', fullDeck[i]);
-        pares.setAttribute('name', fullDeck[i].name)
+        pares.setAttribute('value', cardFront[i].value);
+        pares.setAttribute('name', cardFront[i].name)
         pares.addEventListener('click', cardFlip);
         document.getElementById('boardContainer').appendChild(pares);
-        // buttonBegin.removeEventListener('click', startGame)
     }
 }
 
 // board.addEventListener('click', cardFlip)
 
 // function to flip the cardFront with the 'click' EventListener (attached to the container)
-function cardFlip(e) {
-    console.log(e.target.name)
-    // let cardValue = this.getAttribute('value')
-    // // This variable is what should to be used to find the match
-    // let cardName = this.getAttribute('name')
-    // console.log(cardName)
-    // this.setAttribute('instance', 'splay')
-    // console.log(fullDeck[cardValue])
-    // this.setAttribute('src', fullDeck[cardValue])
-    // // this.setAttribute('src', './images/cF'+ cardValue + '.jpg')
-    // cardSplay.push(cardValue)
-    // console.log(cardSplay)
-    // if (cardSplay.length === 2) {
-    //     compareCards()
-    //         // document.board.style.pointerEvents = "none"
-    // } 
-}
-
-                // function cardFlip(e) {
-                //     // e.target.name
-                //     let cardValue = this.getAttribute('value')
-                //     let cardValue = this.getAttribute('name')
-                
-                
-                //     console.log(cardValue)
-                //     // 'images/cF4.jpg'
-                // // this.setAttribute('src', fullDeck[cardValue].img)
-                //         // e.target.setAttribute('src', `./images/cF${e.target.name}.png`)
-                //     // let cardValue = this.getAttribute('data-value')
-                //     // this.setAttribute('src', fullDeck[cardValue].img)
-                // }
+    function cardFlip(e) {
+        let cardName = this.getAttribute('name')
+        this.setAttribute('src', `./images/${cardName}.jpg`)
+        cardSplay.push(e.target)
+    
+        if (cardSplay.length === 2) {
+            compareCards()
+        }
+    }
 
 // function to compare 2 cardFront, this should include the part when the cardFront are flipped back if they are incorrect
 function compareCards() {
-    // console.log(cardSplay[0].cardName)
-    // console.log(cardSplay[1].cardName)
-    console.log(cardSplay[0].cardValue)
-    console.log(cardSplay[1].cardValue)
-
-    //     if (parseInt(cardSplay[0].cardValue) === parseInt(cardSplay[1].cardValue)) {
-    //         console.log('Pair up!')
-    // //     correctSet()
-    //     } else if (parseInt(cardSplay[0].cardValue) != parseInt(cardSplay[1].cardValue)) {
-    //         console.log('Pair down!')
-    // //     incorrectSet()
-        // }
+    if (cardSplay[0].getAttribute('value') === cardSplay[1].getAttribute('value')) {
+        cardPaired++
+        cardSplay = []
+    } else if (cardSplay[0].getAttribute('value') != cardSplay[1].getAttribute('value')) {
+        cardSplay[0].setAttribute('src', './images/cB.png')
+        cardSplay[1].setAttribute('src', './images/cB.png')
+        cardSplay = []
+    }
+    if (cardPaired === 4) {
+        doneGame()
+    }
 }
 
 
