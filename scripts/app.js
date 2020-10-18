@@ -2,60 +2,67 @@ console.log('Insanity Check!')
 
 
 // Global variables
-// The cards
+// The cardFront
 const cardFront = [ 'images/twofunny.png', 'images/dogbook.jpg', 'images/skatedog.jpg', 'images/platiblonde.jpg']
+const cardFront2 = [...cardFront]
+const allFront = cardFront.concat(cardFront2)
+const fullDeck = []
 
-// Second set of cards
-// let cardFront2 = [...cardFront]
-
-// Array combine
-// const fullDeck = cardFront.concat(cardFront2)
-
-// When the cards are flipped, the cards are splayed out to checked whether they match
+// When the cardFront are flipped, the cardFront are splayed out to checked whether they match
 const cardSplay = []
 
-// When the cards are flipped and they match
+// When the cardFront are flipped and they match
 const cardPaired = []
 
-// This is the board for the cards
+// This is the board
 let board = document.createElement('main')
 board.setAttribute('class', 'board')
 document.body.appendChild(board)
 
+// function to start the game
+function startGame() {
+    shortTimer(8)
+    shuffleDeck()
+    displayBoard()
+    console.log('Yay!')
+}
+
+// Using the awesome shuffle function below, this shuffle then the concated deck
+function shuffleDeck() {
+    while (fullDeck.length < allFront.length) {
+        let randomInt = getRandomInt(allFront.length);
+        if (fullDeck.includes(randomInt) !== true) {
+            fullDeck.push(randomInt);
+        }
+    }
+}
+
 // function to create the 2x4 arena; I think I should have this already done upon on launch since I was planning for it to be hidden until the "Begin" button is pressed
 function displayBoard() {
-    for (let i = 0; i < randomOrder.length; i++) {
+    for (let i = 0; i < fullDeck.length; i++) {
         let pares = document.createElement('img');
-        pares.setAttribute('src', 'images/cardBack.png');
-        // pares.setAttribute('data-id', randomOrder[i]);
-        pares.addEventListener('click', flipCard);
-        document.getElementsByClassName('board').appendChild(pares);
+        pares.setAttribute('src', '/images/eight-cardBack.png');
+        // pares.setAttribute('data-id', fullDeck[i]);
+        // pares.addEventListener('click', flipCard);
+        document.getElementById('boardContainer').appendChild(pares);
     }
 }
-// function to flip the cards with the 'click' EventListener (attached to the container)
+// function to flip the cardFront with the 'click' EventListener (attached to the container)
+// const cardFlip
 
-// This is the ever popular shuffle function
-function shuffle(array) {
-    let currentIndex = array.length, temporaryValue, randomIndex;
-
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
+// function to compare 2 cardFront, this should include the part when the cardFront are flipped back if they are incorrect
+function compareCards() {
+    if (cardSplay.length === 2) {
+        document.main.style.pointerEvents = "none"
     }
-    return array;
+    if (cardSplay.length === 2 && (cardSplay[0].src === cardSplay[1].src)) {
+        correctSet()
+    } else if (cardSplay.length === 2 && (cardSplay[0].src != cardSplay[1].src)) {
+        incorrectSet()
+    }
 }
 
-// Using the popular shuffle function to shuffle my cards
-const shuffledReady = shuffle(cardFront)
-
-// function to compare 2 cards, this should include the part when the cards are flipped back if they are incorrect
-
-
-// function for the 8-second timer, which will include what happens if you don't find your m8s in time and when you do find them in time
-
+// function for the 8-second timer, which will include what happens if you don't find your m8s in time
 function shortTimer(eight) {
     timer = eight
     const timerSession = setInterval(()=> {
@@ -78,20 +85,16 @@ function doneGame() {
     }
 }
 
-// function to start the game
-function startGame() {
-    shortTimer(8)
-    console.log('Yay!')
-}
 
-
-// button query
+// Setup the button to do the things
 const button = document.querySelector('button')
 button.addEventListener('click', ()=> {
     startGame()
 })
 
-// Here is the footer
-document.querySelector('footer').innerText = "Coming Soon: Concentr8ion."
+// This awesome function does a better job in shuffling
+function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+}
 
-/* your mates: Kate (middleton; as twofunny.png), Nate (Fillion) (aka Mal; as dogbook), Earthworm Jim (Bait; as skatedog), (Catherine) Tate (aka Donna Noble; as platiblonde) */
+window.onload
