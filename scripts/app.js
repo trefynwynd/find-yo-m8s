@@ -17,8 +17,42 @@ A checklist of things to do:
 */
 
 // Global variables
-// The cardFront
-const cardFront = [ 'images/twofunny.png', 'images/dogbook.jpg', 'images/skatedog.jpg', 'images/platiblonde.jpg']
+// The cards
+const cardFront = 
+    [{
+        name: 'kate',
+        img: 'images/cF0.jpg'
+    },
+    // {   name: 'kate',
+    //     img: 'images/cF4.jpg'
+    // }, 
+    {
+        name: 'nate',
+        img: 'images/cF1.jpg',
+    },
+    // {
+    //     name: 'nate',
+    //     img: 'images/cF5.jpg'
+    // }, 
+    {
+        name: 'bait',
+        img: 'images/cF2.jpg'
+    },
+    // {
+    //     name: 'bait',
+    //     img: 'images/cF6.jpg'
+    // }, 
+    {
+        name: 'tate',
+        img: 'images/cF3.jpg'
+    }
+    // ,
+    // {
+    //     name: 'tate',
+    //     img: 'images/cF7.jpg'
+    // }
+]
+
 const cardFront2 = [...cardFront]
 const allFront = cardFront.concat(cardFront2)
 const fullDeck = []
@@ -36,7 +70,7 @@ document.body.appendChild(board)
 
 // function to start the game
 function startGame() {
-    shortTimer(8)
+    shortTimer(800)
     shuffleDeck()
     displayBoard()
     console.log('Yay!')
@@ -47,7 +81,7 @@ function shuffleDeck() {
     while (fullDeck.length < allFront.length) {
         let randomInt = getRandomInt(allFront.length);
         if (fullDeck.includes(randomInt) !== true) {
-            fullDeck.push(randomInt);
+            fullDeck.push(allFront[randomInt]);
         }
     }
 }
@@ -56,27 +90,66 @@ function shuffleDeck() {
 function displayBoard() {
     for (let i = 0; i < fullDeck.length; i++) {
         let pares = document.createElement('img');
-        pares.setAttribute('src', '/images/eight-cardBack.png');
-        // pares.setAttribute('data-id', fullDeck[i]);
-        // pares.addEventListener('click', flipCard);
+        pares.setAttribute('src', '/images/cB.png');
+        pares.setAttribute('value', fullDeck[i]);
+        pares.setAttribute('name', fullDeck[i].name)
+        pares.addEventListener('click', cardFlip);
         document.getElementById('boardContainer').appendChild(pares);
+        // buttonBegin.removeEventListener('click', startGame)
     }
 }
+
+// board.addEventListener('click', cardFlip)
+
+// function to flip the cardFront with the 'click' EventListener (attached to the container)
+function cardFlip(e) {
+    console.log(e.target.name)
+    // let cardValue = this.getAttribute('value')
+    // // This variable is what should to be used to find the match
+    // let cardName = this.getAttribute('name')
+    // console.log(cardName)
+    // this.setAttribute('instance', 'splay')
+    // console.log(fullDeck[cardValue])
+    // this.setAttribute('src', fullDeck[cardValue])
+    // // this.setAttribute('src', './images/cF'+ cardValue + '.jpg')
+    // cardSplay.push(cardValue)
+    // console.log(cardSplay)
+    // if (cardSplay.length === 2) {
+    //     compareCards()
+    //         // document.board.style.pointerEvents = "none"
+    // } 
+}
+
+                // function cardFlip(e) {
+                //     // e.target.name
+                //     let cardValue = this.getAttribute('value')
+                //     let cardValue = this.getAttribute('name')
+                
+                
+                //     console.log(cardValue)
+                //     // 'images/cF4.jpg'
+                // // this.setAttribute('src', fullDeck[cardValue].img)
+                //         // e.target.setAttribute('src', `./images/cF${e.target.name}.png`)
+                //     // let cardValue = this.getAttribute('data-value')
+                //     // this.setAttribute('src', fullDeck[cardValue].img)
+                // }
 
 // function to compare 2 cardFront, this should include the part when the cardFront are flipped back if they are incorrect
 function compareCards() {
-    if (cardSplay.length === 2) {
-        document.main.style.pointerEvents = "none"
-    }
-    if (cardSplay.length === 2 && (cardSplay[0].src === cardSplay[1].src)) {
-        correctSet()
-    } else if (cardSplay.length === 2 && (cardSplay[0].src != cardSplay[1].src)) {
-        incorrectSet()
-    }
+    // console.log(cardSplay[0].cardName)
+    // console.log(cardSplay[1].cardName)
+    console.log(cardSplay[0].cardValue)
+    console.log(cardSplay[1].cardValue)
+
+    //     if (parseInt(cardSplay[0].cardValue) === parseInt(cardSplay[1].cardValue)) {
+    //         console.log('Pair up!')
+    // //     correctSet()
+    //     } else if (parseInt(cardSplay[0].cardValue) != parseInt(cardSplay[1].cardValue)) {
+    //         console.log('Pair down!')
+    // //     incorrectSet()
+        // }
 }
 
-// function to flip the cardFront with the 'click' EventListener (attached to the container)
-// const flipCard
 
 // function for the 8-second timer, which will include what happens if you don't find your m8s in time
 // I'm wondering whether I need to see this timer.
@@ -89,8 +162,8 @@ function shortTimer(eight) {
             // document.querySelector('.board').removeEventListener('click', cardFlip)
             alert('Sorry, but your time has elapsed. Refresh the page to try again.')
         } 
-    
-    console.log(timer)
+        
+        console.log(timer)
     }, 1000)
 }
 
@@ -108,8 +181,8 @@ function doneGame() {
 }
 
 // Setup the button to do the things
-const button = document.querySelector('button')
-button.addEventListener('click', ()=> {
+const buttonBegin = document.querySelector('button')
+buttonBegin.addEventListener('click', ()=> {
     startGame()
 })
 
@@ -117,3 +190,4 @@ button.addEventListener('click', ()=> {
 function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
 }
+
