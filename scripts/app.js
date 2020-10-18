@@ -77,14 +77,11 @@ function startGame() {
     console.log('Yay!')
 }
 
-// Using the awesome shuffle function below, this then shuffles the concated deck
-function shuffleDeck() {
-    while (fullDeck.length < allFront.length) {
-        let randomInt = getRandomInt(allFront.length);
-        if (fullDeck.includes(randomInt) !== true) {
-            fullDeck.push(allFront[randomInt]);
-        }
-    }
+// Card array creation
+function shuffleDeck(array) {
+    cardFront.sort(function() {
+        return Math.random() - .5
+    })
 }
 
 // function to create the 2x4 arena; I think I should have this already done upon on launch since I was planning for it to be hidden until the "Begin" button is pressed
@@ -178,6 +175,7 @@ function doneGame() {
     if (cardPaired.length === 8) {
         stopEight()
         alert('Congratulations, you have found your m8s!')
+        buttonBegin.removeEventListener('click', startGame)
     }
 }
 
@@ -185,10 +183,6 @@ function doneGame() {
 const buttonBegin = document.querySelector('button')
 buttonBegin.addEventListener('click', ()=> {
     startGame()
+    buttonBegin.removeEventListener('click', startGame)
 })
-
-// This awesome function does a better job in shuffling
-function getRandomInt(max) {
-    return Math.floor(Math.random() * Math.floor(max));
-}
-
+buttonBegin.addEventListener('click', startGame)
