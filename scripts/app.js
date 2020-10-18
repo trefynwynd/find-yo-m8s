@@ -4,14 +4,14 @@ console.log('Insanity Check!')
 A checklist of things to do:
 [X] Global Variables
 [X] DRY method for cardFronts
-[X] Timer
-[X] The Begin Button
+[X] Timer (branch: Eight definitely short)
+[X] The Begin Button (branch: Now without double triple bubble trouble!)
 [X] The startGame function that the Begin Button executes
 [X] DRY method for Arena creation
 [X] Shuffle function (branch: I found another even shorter function!)
-[] Add cards to board (branch: My fancy DRY method stayed mostly the same)
-[] flipping cards (branch: Had to add more objects to my cards for it to work)
-[] comparing flipped cards
+[X] Add cards to board (branch: My fancy DRY method stayed mostly the same)
+[X] flipping cards (branch: Had to add more objects to my cards for it to work)
+[X] comparing flipped cards (branch: Adding more objects to the cards allowed me to not double-work the variables)
 [X] Win/Lose components
 
 */
@@ -64,18 +64,47 @@ let cardSplay = [] // Where the values are pushed for comparision
 let cardPaired = 0 // A tally of matched pairs
 
 
+// function to start the game
+function startGame() {
+    shortTimer(80)
+    shuffleDeck()
+    displayBoard()
+    console.log('Yay!')
+}
+
 // This is the board
 let board = document.createElement('main')
 board.setAttribute('class', 'board')
 document.body.appendChild(board)
 
-// function to start the game
-function startGame() {
-    shortTimer(800)
-    shuffleDeck()
-    displayBoard()
-    console.log('Yay!')
+// Setup the button to do the things
+const buttonBegin = document.querySelector('button')
+buttonBegin.addEventListener('click', ()=> {
+    startGame()
+    buttonBegin.removeEventListener('click', startGame)
+})
+buttonBegin.addEventListener('click', startGame)
+
+
+// function for the 8-second timer, which will include what happens if you don't find your m8s in time
+function shortTimer(eight) {
+    timer = eight
+    timerSesh = setInterval(()=> {
+        timer--
+        if (timer === 0) {
+            stopEight()
+            alert('Sorry, but your time has elapsed. Refresh the page to try again.')
+            window.location.reload()
+        }
+        console.log(timer)
+    }, 1000)
 }
+
+// This function allows the timer to clear
+function stopEight() {
+    clearInterval(timerSesh)
+}
+
 
 // Card array creation
 function shuffleDeck(array) {
@@ -96,7 +125,6 @@ function displayBoard() {
     }
 }
 
-// board.addEventListener('click', cardFlip)
 
 // function to flip the cardFront with the 'click' EventListener (attached to the container)
     function cardFlip(e) {
@@ -125,40 +153,10 @@ function compareCards() {
 }
 
 
-// function for the 8-second timer, which will include what happens if you don't find your m8s in time
-// I'm wondering whether I need to see this timer.
-function shortTimer(eight) {
-    timer = eight
-    timerSesh = setInterval(()=> {
-        timer--
-        if (timer === 0) {
-            stopEight()
-            // document.querySelector('.board').removeEventListener('click', cardFlip)
-            alert('Sorry, but your time has elapsed. Refresh the page to try again.')
-        } 
-        
-        console.log(timer)
-    }, 1000)
-}
-
-// This function allows the timer to clear
-function stopEight() {
-    clearInterval(timerSesh)
-}
 
 // function when the game is done
 function doneGame() {
-    if (cardPaired.length === 8) {
         stopEight()
         alert('Congratulations, you have found your m8s!')
         buttonBegin.removeEventListener('click', startGame)
-    }
 }
-
-// Setup the button to do the things
-const buttonBegin = document.querySelector('button')
-buttonBegin.addEventListener('click', ()=> {
-    startGame()
-    buttonBegin.removeEventListener('click', startGame)
-})
-buttonBegin.addEventListener('click', startGame)
