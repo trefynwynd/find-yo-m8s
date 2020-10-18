@@ -1,5 +1,20 @@
 console.log('Insanity Check!')
 
+/* 
+A checklist of things to do:
+[X] Global Variables
+[X] DRY method for cardFronts
+[X] Timer
+[X] The Begin Button
+[X] The startGame function that the Begin Button executes
+[X] DRY method for Arena creation
+[X] Shuffle function
+[] Add cards to board
+[] flipping cards
+[] comparing flipped cards
+[X] Win/Lose components
+
+*/
 
 // Global variables
 // The cardFront
@@ -27,7 +42,7 @@ function startGame() {
     console.log('Yay!')
 }
 
-// Using the awesome shuffle function below, this shuffle then the concated deck
+// Using the awesome shuffle function below, this then shuffles the concated deck
 function shuffleDeck() {
     while (fullDeck.length < allFront.length) {
         let randomInt = getRandomInt(allFront.length);
@@ -47,8 +62,6 @@ function displayBoard() {
         document.getElementById('boardContainer').appendChild(pares);
     }
 }
-// function to flip the cardFront with the 'click' EventListener (attached to the container)
-// const cardFlip
 
 // function to compare 2 cardFront, this should include the part when the cardFront are flipped back if they are incorrect
 function compareCards() {
@@ -62,6 +75,9 @@ function compareCards() {
     }
 }
 
+// function to flip the cardFront with the 'click' EventListener (attached to the container)
+// const flipCard
+
 // function for the 8-second timer, which will include what happens if you don't find your m8s in time
 // I'm wondering whether I need to see this timer.
 function shortTimer(eight) {
@@ -71,7 +87,7 @@ function shortTimer(eight) {
         if (timer === 0) {
             stopEight()
             // document.querySelector('.board').removeEventListener('click', cardFlip)
-            alert('Sorry, but your time has elapsed.')
+            alert('Sorry, but your time has elapsed. Refresh the page to try again.')
         } 
     
     console.log(timer)
@@ -91,7 +107,6 @@ function doneGame() {
     }
 }
 
-
 // Setup the button to do the things
 const button = document.querySelector('button')
 button.addEventListener('click', ()=> {
@@ -102,5 +117,3 @@ button.addEventListener('click', ()=> {
 function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
 }
-
-window.onload
