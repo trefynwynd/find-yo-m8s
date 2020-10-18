@@ -1,19 +1,3 @@
-/* 
-A checklist of things to do:
-[X] Global Variables
-[X] DRY method for cardFronts
-[X] Timer (branch: Eight definitely short)
-[X] The Begin Button
-[X] The startGame function that the Begin Button executes
-[X] DRY method for Arena creation
-[X] Shuffle function (branch: I found another even shorter function!)
-[X] Add cards to board (branch: My fancy DRY method stayed mostly the same)
-[X] flipping cards (branch: Had to add more objects to my cards for it to work)
-[X] comparing flipped cards (branch: Adding more objects to the cards allowed me to not double-work the variables)
-[X] Win/Lose components (The only thing broken that I know of is the fact that the Begin button still does double bubble trouble.
-    Since the gameplay session is so short, I think that this more of a feature than a bug)
-*/
-
 // Global variables
 // The cards
 const cardFront = 
@@ -120,7 +104,6 @@ function displayBoard() {
         document.getElementById('boardContainer').appendChild(pares);
     }
 }
-
 
 // function to flip the cardFront with the 'click' EventListener (attached to the container)
     function cardFlip(e) {
