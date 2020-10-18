@@ -1,19 +1,17 @@
-console.log('Insanity Check!')
-
 /* 
 A checklist of things to do:
 [X] Global Variables
 [X] DRY method for cardFronts
 [X] Timer (branch: Eight definitely short)
-[X] The Begin Button (branch: Now without double triple bubble trouble!)
+[X] The Begin Button
 [X] The startGame function that the Begin Button executes
 [X] DRY method for Arena creation
 [X] Shuffle function (branch: I found another even shorter function!)
 [X] Add cards to board (branch: My fancy DRY method stayed mostly the same)
 [X] flipping cards (branch: Had to add more objects to my cards for it to work)
 [X] comparing flipped cards (branch: Adding more objects to the cards allowed me to not double-work the variables)
-[X] Win/Lose components
-
+[X] Win/Lose components (The only thing broken that I know of is the fact that the Begin button still does double bubble trouble.
+    Since the gameplay session is so short, I think that this more of a feature than a bug)
 */
 
 // Global variables
@@ -66,10 +64,9 @@ let cardPaired = 0 // A tally of matched pairs
 
 // function to start the game
 function startGame() {
-    shortTimer(80)
+    shortTimer(8)
     shuffleDeck()
     displayBoard()
-    console.log('Yay!')
 }
 
 // This is the board
@@ -96,7 +93,6 @@ function shortTimer(eight) {
             alert('Sorry, but your time has elapsed. Refresh the page to try again.')
             window.location.reload()
         }
-        console.log(timer)
     }, 1000)
 }
 
@@ -151,7 +147,6 @@ function compareCards() {
         doneGame()
     }
 }
-
 
 
 // function when the game is done
