@@ -63,24 +63,30 @@ function compareCards() {
 }
 
 // function for the 8-second timer, which will include what happens if you don't find your m8s in time
+// I'm wondering whether I need to see this timer.
 function shortTimer(eight) {
     timer = eight
-    const timerSession = setInterval(()=> {
-    if (timer === 0) {
-    clearInterval(timerSession)
-    // document.querySelector('.board').removeEventListener('click', cardFlip)
-    alert('Sorry, but your time has elapsed.')
-    } else {
-    timer--
-    }
-    const timerText = document.getElementById('justEight')
-    timerText.innerHTML = `Timer: ${timer} sec`
+    timerSesh = setInterval(()=> {
+        timer--
+        if (timer === 0) {
+            stopEight()
+            // document.querySelector('.board').removeEventListener('click', cardFlip)
+            alert('Sorry, but your time has elapsed.')
+        } 
+    
+    console.log(timer)
     }, 1000)
-    }
+}
+
+// This function allows the timer to clear
+function stopEight() {
+    clearInterval(timerSesh)
+}
 
 // function when the game is done
 function doneGame() {
     if (cardPaired.length === 8) {
+        stopEight()
         alert('Congratulations, you have found your m8s!')
     }
 }
