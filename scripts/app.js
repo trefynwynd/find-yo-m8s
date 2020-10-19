@@ -97,7 +97,7 @@ function shuffleDeck(array) {
 function displayBoard() {
     for (let i = 0; i < cardFront.length; i++) {
         let pares = document.createElement('img');
-        pares.setAttribute('src', '/images/cB.png');
+        pares.setAttribute('src', './images/cB.png');
         pares.setAttribute('value', cardFront[i].value);
         pares.setAttribute('name', cardFront[i].name)
         pares.addEventListener('click', cardFlip);
